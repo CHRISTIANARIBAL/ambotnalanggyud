@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<nav class="fixed top-0 left-0 h-[60px] w-full bg-gray-900 text-white p-2 flex items-center shadow-lg z-50">
+    <!-- Logo on Left -->
+    <h1 class="text-xl font-bold">🐸 Virtual Dissection</h1>
+
+    <!-- Centered Buttons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+        <div class="space-x-4 flex items-center">
+            <button id="resetBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md">Reset</button>
+            <button id="open3D" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md">Organs</button>
+            <button id="preservationBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="preservation.html">Preservation</a></button>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="index.html">Home</a></button>
+        </div>
+    </div>
+</nav>
+<div id="tooltip" 
+     class="fixed hidden px-2 py-1 text-sm text-white bg-black rounded-md pointer-events-none z-50">
+  <span id="tooltipText"></span>
+</div>
+    <div id="instruction" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 5px 10px;
+        border-radius: 8px;
+        display: none;
+        pointer-events: none;
+        z-index: 2;
+        max-width: calc(100% - 10px);
+        ">
+    </div>
+<!-- Instruction container -->
+<div id="instructionContainer" 
+     class="fixed bottom-20 right-20 bg-white/80 p-4 rounded-xl text-center z-20 shadow-md">
+  <div id="instructionImage" class="w-40 h-40 mx-auto overflow-hidden rounded-lg"></div>
+  <div id="instructionText" class="mt-2 font-semibold text-gray-900 text-sm"></div>
+</div>
+
+<div id="warningPopup" style="z-index: 200;"
+     class="hidden fixed top-5 right-5 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm">
+    ⚠️
+</div>
+
+<!-- <button id="open3D">3D Mdels</button> -->
+
+<!-- Popup -->
+<div id="popup3D" style="display:none; z-index:9999;" class="fixed inset-0 flex items-center justify-center bg-black/80">
+  <div class="relative bg-black p-4 rounded-xl w-[70%] h-[85%] flex flex-col">
+    <canvas id="organCanvas" class="flex-1"></canvas>
+        <!-- Warning popup -->
+    <div id="organLabel" class="absolute text-white text-lg font-bold z-50 pointer-events-none">
+    Heart: Pumps blood
+    </div>
+    <div class="flex justify-between mt-2">
+      <button id="prevOrgan" class="bg-gray-700 text-white px-4 py-2 rounded">Prev</button>
+      <button id="close3D" class="bg-red-600 text-white px-4 py-2 rounded">Close</button>
+      <button id="nextOrgan" class="bg-gray-700 text-white px-4 py-2 rounded">Next</button>
+    </div>
+  </div>
+</div>
+
+    <!-- <div id="experience"> -->
+        <canvas id="experience-canvas"></canvas>
+    <!-- </div> -->
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/"
+            }
+        }
+</script>
+    <script type="module" src="./dissection.js"></script>
+    <script type="module" src="./organViewer.js"></script>
+</body>
+</html>

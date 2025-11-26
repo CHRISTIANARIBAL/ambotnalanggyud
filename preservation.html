@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preservation</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<nav class="fixed top-0 left-0 h-[60px] w-full bg-gray-900 text-white p-2 flex items-center shadow-lg z-50">
+    <!-- Logo on Left -->
+    <h1 class="text-xl font-bold">🐸 Virtual Preservation</h1>
+    <!-- Centered Buttons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+        <div class="space-x-4 flex items-center">
+            <button id="resetBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md">Reset</button>
+            <button id="openInsect" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md">Insects</button>
+            <button id="dissectionBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="dissection.html">Dissection</a></button>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="index.html">Home</a></button>
+        </div>
+    </div>
+</nav>
+<!-- Modal fo insects -->
+<div id="popupInsect" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-[200]">
+  <div class=" rounded-lg shadow-lg w-[70%] h-[85%] relative flex flex-col items-center -translate-y-3">
+    <button id="closeInsect" class="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded">X</button>
+    
+<div id="insectInfoBox" class="text-white w-xl mt-2 z-[300] bg-black/80 p-3 rounded-lg" style="position:absolute; top:33px; left:5px;">
+  <p><strong>Common Name:</strong> <span id="commonName">—</span></p>
+  <p><strong>Scientific Name:</strong> <span id="scientificName">—</span></p>
+  <p><strong>Preservation Methods:</strong> <span id="pinningMethod">—</span></p>
+  <p><strong>Orders:</strong> <span id="insectDescription">—</span></p>
+</div>
+
+
+    <p id="insectLabel" class="text-center text-lg font-bold mt-2"></p>
+    <canvas id="insectCanvas" class="w-full h-full"></canvas>
+    <div class="absolute bottom-4 flex gap-4">
+      <button id="prevInsect" class="px-4 py-2 bg-gray-800 text-white rounded">Prev</button>
+      <button id="nextInsect" class="px-4 py-2 bg-gray-800 text-white rounded">Next</button>
+    <button id="preserveInsect" class="px-4 py-2 bg-gray-800 text-white rounded">Preserve</button>
+    </div>
+  </div>
+</div>
+    <div id="instruction" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 5px 10px;
+        border-radius: 8px;
+        display: none;
+        pointer-events: none;
+        z-index: 2;
+        max-width: calc(100% - 10px);
+        ">
+    </div>
+
+
+<div class="absolute bottom-[50px] right-[370px] transform -translate-x-1/2 flex flex-col items-center gap-1 z-10">
+  <!-- Up -->
+  <button id="rotateUp" class="px-2 py-1 bg-gray-700 text-white rounded">⬆</button>
+  <!-- Middle row (Left + Right) -->
+  <div class="flex gap-8">
+    <button id="rotateLeft" class="px-2 py-1 bg-gray-700 text-white rounded">⬅</button>
+    <button id="rotateRight" class="px-2 py-1 bg-gray-700 text-white rounded">➡</button>
+  </div>
+  <!-- Down -->
+  <button id="rotateDown" class="px-2 py-1 bg-gray-700 text-white rounded">⬇</button>
+</div>
+
+  <button id="resetPinningBtn" 
+  class="fixed bottom-16 left-[560px] px-4 py-2 
+         bg-yellow-600 hover:bg-yellow-700 text-white font-semibold 
+         rounded-md shadow-md z-[1]">
+  Reset Pins
+</button>
+<div id="tooltip"></div>
+
+<div id="warningPopup" style="z-index: 200;"
+     class="hidden fixed top-5 right-5 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm">
+    ⚠️
+</div>
+<div id="status-bar" class="fixed top-3 right-4 bg-white shadow-lg p-2 rounded-xl text-sm max-w-xs border border-gray-300 z-50">
+  ✓ System Ready
+</div>
+
+<div id="instruction-box" 
+     class="absolute bg-white shadow-lg p-4 rounded-xl text-sm w-[225px] border border-gray-300" style="z-index:9; left:20px; top:390px;">
+  Instructions will appear here...
+</div>
+
+<canvas id="experience-canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+
+    <script type="importmap">
+        {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@v0.149.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.149.0/examples/jsm/"
+            }
+        }
+</script>
+    <script type="module" src="./preservation.js"></script>
+    <script type="module" src="./insects.js"></script>
+
+</body>
+</html>

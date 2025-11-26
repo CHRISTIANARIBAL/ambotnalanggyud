@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slideshow with Voice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+.typing {
+  border-right: 2px solid #00ff99;
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: blink 0.8s step-end infinite;
+}
+#slideShow {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+#slideShow:not(.hidden) {
+  opacity: 1;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+</style>
+
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen p-6">
+  <!-- Start Screen -->
+   <!-- ///////////////////////////////// -->
+<!-- Start Screen (Virtual Dissection and Preservation) -->
+<div id="startScreen" class="flex flex-col items-center gap-6 px-6 text-center">
+  <!-- Logo / emblem (optional) -->
+  <div class="w-24 h-24 rounded-2xl bg-white/5 flex items-center justify-center shadow-lg">
+    <!-- simple icon (microscope) -->
+    <svg class="w-12 h-12 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 21v-2a4 4 0 00-4-4H8" />
+      <path d="M21 21h-6" />
+      <path d="M10 3v7" />
+      <path d="M3 10h6" />
+      <circle cx="17" cy="7" r="3" />
+    </svg>
+  </div>
+
+  <!-- Title -->
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+    Virtual Dissection &amp; Preservation
+  </h1>
+
+  <!-- Short subtitle / one-liner -->
+  <p class="max-w-xl text-sm sm:text-base text-gray-300">
+    Step-by-step virtual dissections and preservation. Designed for safe, repeatable biology learning.
+  </p>
+
+  <!-- Helpful notes -->
+  <div class="flex flex-col sm:flex-row gap-3 items-center">
+    <span class="text-xs text-gray-400">Developer:</span>
+    <span class="text-xs font-medium text-gray-200 bg-white/5 px-3 py-1 rounded-full">~ZDSPGC-CODERS~</span>
+    <span class="text-xs text-gray-400 hidden sm:inline">•</span>
+    <!-- <span class="text-xs text-gray-400">Recommendations: use headphones</span> -->
+  </div>
+
+  <!-- Controls row: Start + small toggles -->
+  <div class="flex items-center gap-3">
+    <button id="startBtn"
+      class="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-2xl text-white font-semibold shadow-2xl transform active:scale-95">
+      <!-- play icon -->
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M5 3v18l15-9L5 3z"></path>
+      </svg>
+      Start
+    </button>
+  </div>
+
+  <!-- Footnote / credits -->
+  <p class="text-xs text-gray-500 mt-2">
+    Content for educational use only. Handle specimens and tools safely when performing real dissections.
+  </p>
+</div>
+
+  <!-- /////////////////////////////////////////////////// -->
+  <!-- Slideshow -->
+  <div id="slideShow" class="hidden flex flex-col items-center">
+    <img id="slideImage" 
+      class="w-[800px] h-[450px] rounded-2xl shadow-xl mb-6 object-contain"
+      alt="Instruction Image">
+
+
+
+
+<p id="instructionText" class="text-lg text-left mb-6 hidden self-start w-[800px] mx-auto"></p>
+
+
+
+    <div class="flex gap-4">
+      <button id="prevBtn" 
+        class="px-6 py-2 bg-gray-600 hover:bg-gray-700 rounded-xl text-white font-semibold shadow-md">
+        Back
+      </button>
+        <!-- Home Button -->
+    <button id="homeBtn" 
+      class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-md">
+      Home
+    </button>
+      <button id="nextBtn" 
+        class="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-xl text-white font-semibold shadow-md">
+        Next
+      </button>
+    </div>
+  </div>
+
+   <!-- Social Media Buttons -->
+  <div id="socialMedia" class="absolute bottom-6 flex gap-6">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/aribal.mayol.christian" target="_blank" 
+       class="bg-blue-600 hover:bg-blue-700 p-3 rounded-full shadow-md">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" 
+           viewBox="0 0 24 24" class="w-6 h-6 text-white">
+        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12"></path>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://instagram.com" target="_blank" 
+       class="bg-pink-500 hover:bg-pink-600 p-3 rounded-full shadow-md">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" 
+           viewBox="0 0 24 24" class="w-6 h-6 text-white">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2z"/>
+      </svg>
+    </a>
+
+    <!-- Gmail -->
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chrizzchan98@gmail.com" 
+      target="_blank" 
+      class="bg-red-600 hover:bg-red-700 p-3 rounded-full shadow-md">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" 
+          viewBox="0 0 24 24" class="w-6 h-6 text-white">
+        <path d="M12 13.5l8-6V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7.5l8 6zm0-2.5L4 6h16l-8 5z"/>
+      </svg>
+    </a>
+
+  </div>
+
+<script>
+const slides = [
+  { 
+    image: "assets/images/Gif/gloves.gif", 
+    text: "Before beginning the dissection, it is important to wear protective gloves. The gloves will protect your hands from direct contact with the specimen." 
+  },
+  { 
+    image: "assets/images/Gif/chemicals.gif", 
+    text: "To protect from any chemicals or preservatives that may be present. This step ensures both your safety and cleanliness throughout the activity." 
+  },
+];
+
+let currentIndex = 0;
+const imgEl = document.getElementById("slideImage");
+const textEl = document.getElementById("instructionText");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const slideShow = document.getElementById("slideShow");
+const socialMedia = document.getElementById("socialMedia");
+
+let typingTimeout; // 🧠 store typing timeout so we can cancel
+
+function showSlide(index) {
+  const slide = slides[index];
+  slideShow.style.display = "flex";
+  imgEl.src = slide.image;
+
+  // Cancel old tasks
+  speechSynthesis.cancel();
+  clearTimeout(typingTimeout);
+
+  // Disable buttons during typing
+  nextBtn.disabled = true;
+  prevBtn.disabled = true;
+
+  // Typing effect setup
+  const text = slide.text;
+  textEl.textContent = "";
+  textEl.classList.remove("hidden");
+  textEl.classList.add("typing");
+  textEl.style.opacity = "1";
+  textEl.style.whiteSpace = "pre-wrap";
+
+  let i = 0;
+  const speed = 25; // adjust typing speed (lower = slower)
+
+  function typeChar() {
+    if (i < text.length) {
+      // Add each letter smoothly left to right
+      textEl.textContent = text.slice(0, i + 1);
+      i++;
+      typingTimeout = setTimeout(typeChar, speed);
+    } else {
+      // Done typing
+      textEl.classList.remove("typing");
+      nextBtn.disabled = false;
+      prevBtn.disabled = currentIndex === 0;
+    }
+  }
+
+  typeChar();
+
+  speak(slide.text);
+  updateButtons();
+}
+
+function updateButtons() {
+  if (currentIndex === slides.length - 1) {
+    nextBtn.textContent = "Start Dissection";
+    nextBtn.classList.remove("bg-green-600", "hover:bg-green-700");
+    nextBtn.classList.add("bg-blue-600", "hover:bg-blue-700");
+  } else {
+    nextBtn.textContent = "Next";
+    nextBtn.classList.remove("bg-blue-600", "hover:bg-blue-700");
+    nextBtn.classList.add("bg-green-600", "hover:bg-green-700");
+  }
+
+  prevBtn.classList.toggle("opacity-50", currentIndex === 0);
+}
+
+nextBtn.addEventListener("click", () => {
+  clearTimeout(typingTimeout); // 🧠 stop old typing immediately
+  if (currentIndex < slides.length - 1) {
+    currentIndex++;
+    showSlide(currentIndex);
+  } else {
+    window.location.href = "dissection.html";
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  clearTimeout(typingTimeout);
+  if (currentIndex > 0) {
+    currentIndex--;
+    showSlide(currentIndex);
+  }
+});
+
+// Start button
+startBtn.addEventListener("click", () => {
+  // Hide start screen & social buttons
+  startScreen.classList.add("hidden");
+  socialMedia.classList.add("hidden");
+
+  // Properly show slideshow
+  slideShow.classList.remove("hidden");
+  slideShow.style.display = "flex";
+
+  // Reset everything before starting
+  textEl.classList.add("hidden");
+  textEl.textContent = "";
+  currentIndex = 0;
+  showSlide(currentIndex);
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: "instant" });
+});
+
+document.getElementById("homeBtn").addEventListener("click", () => {
+  speechSynthesis.cancel(); // stop any voice
+  clearTimeout(typingTimeout); // stop typing effect
+  window.location.reload(); // reloads page completely
+});
+
+window.addEventListener("beforeunload", () => speechSynthesis.cancel());
+window.addEventListener("load", () => speechSynthesis.cancel());
+</script>
+
+
+</body>
+</html>
