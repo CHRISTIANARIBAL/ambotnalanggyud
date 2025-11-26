@@ -45,6 +45,9 @@ loader.load('assets/load.glb', function (glb) {
         if (child.isMesh && child.name === "speaker") {
             child.visible = false;   // Hide it
         }
+        if (child.isMesh && child.name === "scalpel") {
+            child.visible = false;   // Hide it
+        }
     });
     console.log("Available animations:", glb.animations.map(a => a.name));
     const model = glb.scene;
