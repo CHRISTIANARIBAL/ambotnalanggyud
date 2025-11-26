@@ -15,8 +15,7 @@ const insectPlacementConfig = {
   },
   wasps: {
     position: new THREE.Vector3(-0.5, 0, 0),
-    // rotation: new THREE.Euler(-0.95, 3.1, 0),
-    rotation: new THREE.Euler(-0.95, 3.1, 0),
+    rotation: new THREE.Euler(-0.95, 1.90, 0),
     scale: new THREE.Vector3(4, 4, 4),
   },
   grasshopper: {
@@ -24,11 +23,22 @@ const insectPlacementConfig = {
     rotation: new THREE.Euler(-0.9, 5.52, 0),
     scale: new THREE.Vector3(3.5, 3.5, 3.5),
   },
-  // carpenter_ant: {
-  //   position: new THREE.Vector3(-0.1, 0, 0),
-  //   rotation: new THREE.Euler(-0.9, 5.52, 0),
-  //   scale: new THREE.Vector3(3.5, 3.5, 3.5),
-  // },
+  ///////////
+  carpenter_ant: {
+    position: new THREE.Vector3(-0.1, 0, 0),
+    rotation: new THREE.Euler(-0.9, 95.9, 0),
+    scale: new THREE.Vector3(3.5, 3.5, 3.5),
+  },
+  honey_bee: {
+    position: new THREE.Vector3(-0.1, 0, 0),
+    rotation: new THREE.Euler(-0.60, 9.47, 0),
+    scale: new THREE.Vector3(3.5, 3.5, 3.5),
+  },
+  houseflies: {
+    position: new THREE.Vector3(-0.1, 0, 0),
+    rotation: new THREE.Euler(-0.9, 8.57, 0),
+    scale: new THREE.Vector3(3.5, 3.5, 3.5),
+  },
 };
 
 // Scene

@@ -74,13 +74,24 @@ const insectInfo = {
         pinningMethod: "Pinning Method, Ethanol Preservation, Freezing Method (Short-Term Only)",
         description: "Hymenoptera"
     },
-    // carpenter_ant: {
-    //     commonName: "Carpenter Ant",
-    //     scientificName: "Camponotus pennsylvanicus",
-    //     pinningMethod: "Pinning Method, ethanol only for soft specimens",
-    //     description: "Order: Hymenoptera"
-    // }
-
+    carpenter_ant: {
+        commonName: "Carpenter Ant",
+        scientificName: "Camponotus pennsylvanicus",
+        pinningMethod: "Pinning Method, ethanol only for soft specimens",
+        description: "Order: Hymenoptera"
+    },
+    honey_bee: {
+        commonName: "Honey Bee",
+        scientificName: "Apis mellifera",
+        pinningMethod: "Pinnning method, ethanol preservation (70%)",
+        description: "Order: Hymenoptera"
+    },
+    houseflies: {
+        commonName: "House Fly",
+        scientificName: "Musca domestica",
+        pinningMethod: "Pinning method, ethanol preservation (70%), drying method",
+        description: "Order: Diptera"
+    }
 };
 
 /* =====================================================
@@ -92,7 +103,9 @@ const insectModels = [
     "assets/models/insects/wasps.glb",
     "assets/models/insects/ladybug.glb",
     "assets/models/insects/grasshopper.glb",
-    // "assets/models/insects/carpenter_ant.glb",
+    "assets/models/insects/carpenter_ant.glb",
+    "assets/models/insects/honey_bee.glb",
+    "assets/models/insects/houseflies.glb",
 ];
 
 let currentInsectIndex = 0;
