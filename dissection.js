@@ -366,7 +366,7 @@ function onClick() {
              console.log(`Body class list`, document.body.classList);
             
              //test if image pasth exist
-             const cursorPath = `cursor-Images/${currentTool}.png`;
+             const cursorPath = `assets/images/cursor-images/${currentTool}.png`;
              const testImg = new Image();
              testImg.src = cursorPath;
              testImg.onload = () => console.log(`✅cursor image loaded: ${cursorPath}`);

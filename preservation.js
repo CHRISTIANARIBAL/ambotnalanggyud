@@ -413,50 +413,50 @@ document.addEventListener("preserveInsect", (e) => {
 let rotateInterval = null;
 const rotationSpeed = 0.05; // adjust speed
 
-function startRotation(direction) {
-  if (rotateInterval) return; // avoid duplicate intervals
+// function startRotation(direction) {
+//   if (rotateInterval) return; // avoid duplicate intervals
 
-  rotateInterval = setInterval(() => {
-    if (!preservedInsect) return;
+//   rotateInterval = setInterval(() => {
+//     if (!preservedInsect) return;
 
-    switch (direction) {
-      case "up":
-        preservedInsect.rotation.x -= rotationSpeed;
-        break;
-      case "down":
-        preservedInsect.rotation.x += rotationSpeed;
-        break;
-      case "left":
-        preservedInsect.rotation.y += rotationSpeed;
-        break;
-      case "right":
-        preservedInsect.rotation.y -= rotationSpeed;
-        break;
-    }
-  }, 50); // rotate every 50ms
-}
+//     switch (direction) {
+//       case "up":
+//         preservedInsect.rotation.x -= rotationSpeed;
+//         break;
+//       case "down":
+//         preservedInsect.rotation.x += rotationSpeed;
+//         break;
+//       case "left":
+//         preservedInsect.rotation.y += rotationSpeed;
+//         break;
+//       case "right":
+//         preservedInsect.rotation.y -= rotationSpeed;
+//         break;
+//     }
+//   }, 50); // rotate every 50ms
+// }
 
-function stopRotation() {
-  clearInterval(rotateInterval);
-  rotateInterval = null;
-}
+// function stopRotation() {
+//   clearInterval(rotateInterval);
+//   rotateInterval = null;
+// }
 
-// Attach events
-document.getElementById("rotateUp").addEventListener("mousedown", () => startRotation("up"));
-document.getElementById("rotateUp").addEventListener("mouseup", stopRotation);
-document.getElementById("rotateUp").addEventListener("mouseleave", stopRotation);
+// // Attach events
+// document.getElementById("rotateUp").addEventListener("mousedown", () => startRotation("up"));
+// document.getElementById("rotateUp").addEventListener("mouseup", stopRotation);
+// document.getElementById("rotateUp").addEventListener("mouseleave", stopRotation);
 
-document.getElementById("rotateDown").addEventListener("mousedown", () => startRotation("down"));
-document.getElementById("rotateDown").addEventListener("mouseup", stopRotation);
-document.getElementById("rotateDown").addEventListener("mouseleave", stopRotation);
+// document.getElementById("rotateDown").addEventListener("mousedown", () => startRotation("down"));
+// document.getElementById("rotateDown").addEventListener("mouseup", stopRotation);
+// document.getElementById("rotateDown").addEventListener("mouseleave", stopRotation);
 
-document.getElementById("rotateLeft").addEventListener("mousedown", () => startRotation("left"));
-document.getElementById("rotateLeft").addEventListener("mouseup", stopRotation);
-document.getElementById("rotateLeft").addEventListener("mouseleave", stopRotation);
+// document.getElementById("rotateLeft").addEventListener("mousedown", () => startRotation("left"));
+// document.getElementById("rotateLeft").addEventListener("mouseup", stopRotation);
+// document.getElementById("rotateLeft").addEventListener("mouseleave", stopRotation);
 
-document.getElementById("rotateRight").addEventListener("mousedown", () => startRotation("right"));
-document.getElementById("rotateRight").addEventListener("mouseup", stopRotation);
-document.getElementById("rotateRight").addEventListener("mouseleave", stopRotation);
+// document.getElementById("rotateRight").addEventListener("mousedown", () => startRotation("right"));
+// document.getElementById("rotateRight").addEventListener("mouseup", stopRotation);
+// document.getElementById("rotateRight").addEventListener("mouseleave", stopRotation);
 
 // Static position, rotation, and scale settings per insect model
 
