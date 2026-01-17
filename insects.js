@@ -126,7 +126,14 @@ function clearCurrentModel() {
     currentModel = null;
 }
 
+let isLoading = false;
+
 function loadInsect(index) {
+
+    if (isLoading) return; // 🚫 block spam clicking
+
+    isLoading = true;
+    setNavDisabled(true);
 
     const modelPath = insectModels[index];
     clearCurrentModel();
@@ -171,8 +178,25 @@ function loadInsect(index) {
 
             controls.target.set(0, 0, 0);
             controls.update();
+
+            isLoading = false;
+            setNavDisabled(false);
+        },
+        undefined,
+        (err) => {
+            console.error("GLB load error:", err);
+            isLoading = false; // unlock even on error
+            setNavDisabled(false);
         }
     );
+}
+
+let nextBtn, prevBtn;
+
+function setNavDisabled(disabled) {
+    if (!nextBtn || !prevBtn) return; // safety check
+    nextBtn.disabled = disabled;
+    prevBtn.disabled = disabled;
 }
 
 /* =====================================================
@@ -207,8 +231,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("popupInsect");
     const openBtn = document.getElementById("openInsect");
     const closeBtn = document.getElementById("closeInsect");
-    const nextBtn = document.getElementById("nextInsect");
-    const prevBtn = document.getElementById("prevInsect");
+    // const nextBtn = document.getElementById("nextInsect");
+    // const prevBtn = document.getElementById("prevInsect");
+    nextBtn = document.getElementById("nextInsect");
+    prevBtn = document.getElementById("prevInsect");
     const preserveBtn = document.getElementById("preserveInsect");
 
     openBtn.addEventListener("click", () => {
