@@ -127,8 +127,11 @@ function clearCurrentModel() {
 }
 
 let isLoading = false;
+let loadRequestId = 0;
 
 function loadInsect(index) {
+    loadRequestId++;                  // 🔑 new request
+    const requestId = loadRequestId;
 
     if (isLoading) return; // 🚫 block spam clicking
 
@@ -142,6 +145,21 @@ function loadInsect(index) {
     loader.load(
         modelPath,
         gltf => {
+            // 🚫 IGNORE outdated loads
+            if (requestId !== loadRequestId) {
+                gltf.scene.traverse(obj => {
+                    obj.geometry?.dispose?.();
+                    if (obj.material) {
+                        if (Array.isArray(obj.material)) {
+                            obj.material.forEach(m => m.dispose?.());
+                        } else {
+                            obj.material.dispose?.();
+                        }
+                    }
+                });
+                return;
+            }
+
             currentModel = gltf.scene;
 
             scene.add(currentModel);
@@ -183,10 +201,11 @@ function loadInsect(index) {
             setNavDisabled(false);
         },
         undefined,
-        (err) => {
-            console.error("GLB load error:", err);
-            isLoading = false; // unlock even on error
-            setNavDisabled(false);
+        () => {
+            if (requestId === loadRequestId) {
+                isLoading = false;
+                setNavDisabled(false);
+            }
         }
     );
 }
