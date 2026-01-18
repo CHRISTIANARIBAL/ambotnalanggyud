@@ -126,6 +126,8 @@ function clearCurrentModel() {
     currentModel = null;
 }
 
+let insectLoading;
+insectLoading = document.getElementById("insectLoading");
 let isLoading = false;
 let loadRequestId = 0;
 
@@ -137,6 +139,7 @@ function loadInsect(index) {
 
     isLoading = true;
     setNavDisabled(true);
+    showLoading(); // 👈 SHOW OVERLAY
 
     const modelPath = insectModels[index];
     clearCurrentModel();
@@ -199,6 +202,7 @@ function loadInsect(index) {
 
             isLoading = false;
             setNavDisabled(false);
+            hideLoading(); // 👈 HIDE OVERLAY
         },
         undefined,
         () => {
@@ -208,6 +212,14 @@ function loadInsect(index) {
             }
         }
     );
+}
+
+function showLoading() {
+    insectLoading?.classList.remove("hidden");
+}
+
+function hideLoading() {
+    insectLoading?.classList.add("hidden");
 }
 
 let nextBtn, prevBtn;

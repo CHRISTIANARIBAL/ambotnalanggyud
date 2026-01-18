@@ -35,6 +35,15 @@
 
 
     <p id="insectLabel" class="text-center text-lg font-bold mt-2"></p>
+
+    <!-- LOADING OVERLAY -->
+    <div id="insectLoading"
+        class="absolute inset-0 flex flex-col items-center justify-center
+                bg-black/70 text-white hidden z-[250]">
+        <div class="animate-spin rounded-full h-10 w-10 border-4 border-white border-t-transparent mb-3"></div>
+        <p class="text-sm">Loading insect model…</p>
+    </div>
+
     <canvas id="insectCanvas" class="w-full h-full"></canvas>
     <div class="absolute bottom-4 flex gap-4">
       <button id="prevInsect" class="px-4 py-2 bg-gray-800 text-white rounded">Prev</button>
