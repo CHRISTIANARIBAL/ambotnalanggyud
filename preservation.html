@@ -18,7 +18,8 @@
             <button id="openInsect" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md">Insects</button>
             <button id="dissectionBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="dissection.html">Dissection</a></button>
             <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="index.html">Home</a></button>
-        </div>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="about.html">About</a></button>
+          </div>
     </div>
 </nav>
 <!-- Modal fo insects -->
@@ -52,6 +53,56 @@
     </div>
   </div>
 </div>
+
+<div id="realInsectContainer"
+     style="
+       display:none;
+       position:absolute;
+       right:45px;
+       bottom:150px;
+       width:320px;
+       height:320px;
+
+       background:#ffffff;
+       border-radius:10px;
+       padding:10px;
+       box-shadow:0 6px 15px rgba(0,0,0,0.35);
+       z-index:10;
+
+       box-sizing:border-box;
+     ">
+
+  <!-- TITLE -->
+  <div style="
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:8px;
+  ">
+    Real Preserved Specimen
+  </div>
+
+  <!-- IMAGE WRAPPER (THIS IS THE FIX) -->
+  <div style="
+    width:100%;
+    height:calc(100% - 28px); /* title height */
+    background:#f3f3f3;
+    border-radius:8px;
+    overflow:hidden;
+  ">
+    <img id="realInsectImage"
+         src=""
+         alt="Real pinned insect"
+         style="
+           width:100%;
+           height:100%;
+           object-fit:contain;
+           display:block;
+         ">
+  </div>
+
+</div>
+
+
     <div id="instruction" style="
         position: absolute;
         top: 0;
