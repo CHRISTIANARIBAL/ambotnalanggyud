@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preservation</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("ZM2eXxiULOeGoIqMG");
+  })();
+</script>
+
+</head>
+<body>
+<nav class="fixed top-0 left-0 h-[60px] w-full bg-gray-900 text-white p-2 flex items-center shadow-lg z-50">
+    <!-- Logo on Left -->
+    <h1 class="text-xl font-bold">🐸 ZDSPGC~Coders</h1>
+    <!-- Centered Buttons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2">
+        <div class="space-x-4 flex items-center">
+            <button id="dissectionBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="dissection.html">Dissection</a></button>
+            <button id="dissectionBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="preservation.html">Preservation</a></button>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md shadow-md"><a href="index.html">Home</a></button>
+        </div>
+    </div>
+</nav>
+
+<!-- ABOUT SECTION -->
+<main class="pt-[80px] px-6 flex justify-center">
+  <div class="max-w-4xl bg-white/90 rounded-xl shadow-lg p-8">
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+      About the Virtual Dissection and Preservation System
+    </h2>
+
+    <p class="text-gray-700 leading-relaxed mb-4">
+      The <strong>Virtual Dissection and Preservation System</strong> is an
+     educational tool designed to simulate basic biological
+      laboratory procedures in a safe and digital environment.
+    </p>
+
+    <p class="text-gray-700 leading-relaxed mb-4">
+      This system focuses on <strong>specimen pinning and introductory dissection
+      concepts(Frog)</strong>, allowing students to understand proper techniques
+      without the need for real biological samples.
+    </p>
+
+    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">
+      🎯 System Objectives
+    </h3>
+    <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Provide a virtual alternative to traditional specimen pinning and basic dissection procedures</li>
+        <li>Allow students to explore the anatomical structures of a frog through virtual dissection</li>
+        <li>Help students learn correct pin placement and proper handling techniques for preserved specimens</li>
+        <li>Reduce ethical, safety, and material concerns in biology laboratories</li>
+        <li>Enhance learning through interactive 3D visualization and guided simulations</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">
+      🧪 System Scope and Limitations
+    </h3>
+<p class="text-gray-700 leading-relaxed mb-4">
+  This system is designed <strong>for educational simulation only</strong>.
+  The preservation module is limited to <strong>pinning procedures</strong>
+  and does not include chemical preservation or advanced dissection methods.
+  The virtual preservation feature currently supports selected insect specimens,
+  including <strong>butterflies, beetles, dragonflies, grasshoppers, and ants</strong>,
+  which are commonly used in basic biology and entomology lessons.
+</p>
+
+<p class="text-gray-700 leading-relaxed mb-4">
+  For the dissection module, the system currently provides
+  <strong>only a frog specimen</strong> for virtual dissection.
+  This system demonstrates basic anatomical exploration and procedural steps
+  intended to help students understand proper dissection techniques.
+  Additional organisms and advanced dissection features are not included
+  in the current version of the system.
+</p>
+
+    <p class="text-gray-700 leading-relaxed mb-4">
+      The virtual dissection feature demonstrates anatomical exploration but
+      should not be considered a replacement for hands-on laboratory experience.
+    </p>
+
+    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2">
+      💻 Technology Used
+    </h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li><strong>Visual Studio Code (VS Code)</strong> – as the primary code editor for developing, debugging, and managing the system</li>
+        <li><strong>Blender</strong> – for creating, editing, animating, and exporting 3D specimen and organ models</li>
+        <li><strong>Three.js</strong> – for real-time 3D visualization and interactive rendering</li>
+        <li><strong>JavaScript</strong> – for system logic, interaction control, and animation handling</li>
+        <li><strong>Tailwind CSS</strong> – for responsive user interface design and layout styling</li>
+        <li><strong>WebGL</strong> – for hardware-accelerated 3D graphics rendering</li>
+        <li><strong>EmailJS</strong> – for handling user suggestions and feedback submission</li>
+        <li><strong>GitHub Pages</strong> – for hosting and deploying the web-based system</li>
+        </ul>
+<p class="text-gray-600 text-sm mt-3">
+  These tools were selected to ensure accessibility, performance, and ease of deployment,
+  allowing the system to run entirely within a modern web browser.
+</p>
+
+    <div class="mt-8 text-center text-sm text-gray-500">
+      Developed by <strong>ZDSPGC~Coders</strong> for educational purposes
+    </div>
+
+  </div>
+
+  <!-- SUGGESTION SECTION -->
+<section class="mt-10 flex justify-center pb-10">
+  <div class="max-w-2xl w-full bg-white/90 rounded-xl shadow-lg p-6">
+
+    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+      💡 Suggestions & Feedback
+    </h3>
+
+    <p class="text-gray-600 text-sm mb-4 text-center">
+      Help us improve the Virtual Dissection and Preservation System.
+    </p>
+
+<form id="suggestionForm"
+      class="max-w-xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-md">
+
+  <h2 class="text-xl font-bold mb-4 text-center">Suggestions / Feedback</h2>
+
+  <input type="text" name="from_name" placeholder="Your Name" required
+         class="w-full mb-3 p-2 border rounded">
+
+  <input type="email" name="from_email" placeholder="Your Email" required
+         class="w-full mb-3 p-2 border rounded">
+
+  <textarea name="message" rows="4" placeholder="Your suggestion…" required
+            class="w-full mb-3 p-2 border rounded"></textarea>
+
+  <button type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+    Send
+  </button>
+
+  <p id="statusMsg" class="text-center mt-3 text-sm"></p>
+</form>
+
+  </div>
+</section>
+
+</main>
+
+</body>
+<script>
+document.getElementById("suggestionForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "service_f8nikej",
+    "template_vphenm7",
+    this
+  ).then(() => {
+    document.getElementById("statusMsg").textContent =
+      "✅ Suggestion sent successfully!";
+    this.reset();
+  }).catch((error) => {
+    document.getElementById("statusMsg").textContent =
+      "❌ Failed to send. Please try again.";
+    console.error("EmailJS error:", error);
+  });
+});
+</script>
+
+
+</html>

@@ -6,6 +6,10 @@
 /* body, canvas {
   cursor: default;
 } */
+ html, body {
+  overflow: hidden;
+}
+
 
 #experience {
     position: fixed;

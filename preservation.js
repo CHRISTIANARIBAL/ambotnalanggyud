@@ -2,6 +2,23 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+// ✅ Reset button event
+document.querySelector("#resetBtn").addEventListener("click", () => {
+    location.reload(); // 🔄 reload the entire page
+});
+
+const realPinnedImages = {
+  ladybug: "assets/images/Finished-Pinned/ladybug.jpg",
+  stink: "assets/images/Finished-Pinned/stinkbug.jpg",
+  wasps: "assets/images/Finished-Pinned/wasp.jpg",
+  grasshopper: "assets/images/Finished-Pinned/grasshopper.jpg",
+  carpenter_ant: "assets/images/Finished-Pinned/carpenter_ant.jpg",
+  honey_bee: "assets/images/Finished-Pinned/honey_bee.jpg",
+  houseflies: "assets/images/Finished-Pinned/housefly.jpg",
+};
+
+let currentInsectName = null;
+
 const insectPlacementConfig = {
   ladybug: {
     position: new THREE.Vector3(-0.5, 0, 0),
@@ -218,6 +235,13 @@ document.getElementById("resetPinningBtn").addEventListener("click", () => {
   // Reset cursor & status
   document.body.style.cursor = "default";
   updateStatus("🔄 All pins removed. Start pinning again!");
+  
+    // 🖼️ HIDE real pinned insect image  ← ✅ PUT IT HERE
+  const realContainer = document.getElementById("realInsectContainer");
+  if (realContainer) {
+    realContainer.style.display = "none";
+  }
+  
   if (instructionBox) {
     instructionBox.innerText = "All pins have been reset. Select the Pin tool to start again.";
   }
@@ -227,8 +251,7 @@ document.getElementById("resetPinningBtn").addEventListener("click", () => {
 if (instructionBox) {
   // Save original instruction
 const originalInstruction = 
-  "* Rotate the insect using 4 arrows to see the red small square.<br>" +
-  "* Select the Pin tool to start preserving this insect.<br>" +
+  "* Select the Pin tool to start pinning this insect.<br>" +
   "* Pin the red part of the Insect.";
 
 instructionBox.innerHTML = originalInstruction;
@@ -337,12 +360,31 @@ if (currentPin && preservedInsect && helperMeshes.length > 0) {
       updateStatus("🎉 Congratulations! You've finished pinning this insect.");
       if (instructionBox) {
         instructionBox.innerText =
-          "🎉 Congratulations! You've successfully preserved this insect.";
+          "🎉 Congratulations! You've successfully preserved this insect.\n" +
+          "📸 A real preserved specimen is shown for reference.";
       }
+      showRealPinnedInsect();
     }
   }
 }
 });
+
+function showRealPinnedInsect() {
+  const container = document.getElementById("realInsectContainer");
+  const img = document.getElementById("realInsectImage");
+
+  if (!container || !img) return;
+
+  const src = realPinnedImages[currentInsectName];
+
+  if (!src) {
+    console.warn("⚠ No real pinned image for:", currentInsectName);
+    return;
+  }
+
+  img.src = src;
+  container.style.display = "block";
+}
 
 let requiredPins = 0;
 let helperMeshes = [];
@@ -350,6 +392,7 @@ let preservedInsect = null;
 ///insect modal///////////////////////////
 document.addEventListener("preserveInsect", (e) => {
   const { insect, name } = e.detail;
+  currentInsectName = name; // ✅ store active insect
 
   if (!tableMesh) {
     console.warn("⚠ Table not loaded yet, cannot place insect");
@@ -402,8 +445,7 @@ document.addEventListener("preserveInsect", (e) => {
   // ✅ Show instructions immediately after preserving
   if (instructionBox) {
     instructionBox.innerText =
-      `* Rotate the insect using arrows to find helpers.\n` +
-      `* Select the Pin tool to start.\n` +
+      `* Select the Pin tool to start pinning this insect.\n` +
       `* This insect requires ${requiredPins} pin(s) for preservation.`;
   }
 });
