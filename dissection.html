@@ -32,13 +32,13 @@
         top: 0;
         left: 0;
         color: black;
-        font-size: 16px;
+        font-size: clamp(18px, 1.8vw, 28px);
         font-weight: bold;
         background: rgba(255, 255, 255, 0.7);
-        padding: 5px 10px;
-        border-radius: 8px;
+        border-radius: clamp(6px, 0.8vw, 12px);
         display: none;
         pointer-events: none;
+        padding: clamp(6px, 1vw, 14px);
         z-index: 2;
         max-width: calc(100% - 10px);
         ">
@@ -47,7 +47,11 @@
 <div id="instructionContainer" 
      class="fixed bottom-20 right-20 bg-white/80 p-4 rounded-xl text-center z-20 shadow-md">
   <div id="instructionImage" class="w-40 h-40 mx-auto overflow-hidden rounded-lg"></div>
-  <div id="instructionText" class="mt-2 font-semibold text-gray-900 text-sm"></div>
+<div id="instructionText" 
+     class="mt-2 font-semibold text-gray-900"
+     style="font-size: clamp(13px, 1vw, 20px);">
+</div>
+
 </div>
 
 <div id="warningPopup" style="z-index: 200;"
