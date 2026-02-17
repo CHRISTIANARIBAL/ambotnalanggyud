@@ -2,13 +2,20 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+const BASE_WIDTH = 1920;
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#595959');
 const canvas = document.getElementById('experience-canvas');
+// const sizes = {
+//     width: window.innerWidth,
+//     height: window.innerHeight
+// }
 const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
+    width: canvas.clientWidth,
+    height: canvas.clientHeight
+};
+
 let mixer;
 const clock = new THREE.Clock();
 const raycaster = new THREE.Raycaster();
@@ -86,23 +93,52 @@ controls.enabled = false;
 
 controls.update();
 
+function scaleUI() {
+    const rect = canvas.getBoundingClientRect();
+    const scaleFactor = rect.width / BASE_WIDTH;
+
+    const instruction = document.getElementById("instruction");
+    const instructionText = document.getElementById("instructionText");
+
+    if (instruction) {
+        instruction.style.fontSize = `${16 * scaleFactor}px`;
+        instruction.style.padding = `${10 * scaleFactor}px ${15 * scaleFactor}px`;
+        instruction.style.borderRadius = `${8 * scaleFactor}px`;
+        instruction.style.maxWidth = `${300 * scaleFactor}px`;
+    }
+
+    if (instructionText) {
+        instructionText.style.fontSize = `${14 * scaleFactor}px`;
+    }
+}
+
 function handleResize(){
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-    const aspect = sizes.width / sizes.height;
+    // sizes.width = window.innerWidth;
+    // sizes.height = window.innerHeight;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    // const aspect = sizes.width / sizes.height;
+    const aspect = width / height;
     camera.left = -aspect * zoom;
     camera.right = aspect * zoom;  
     camera.top = zoom;
     camera.bottom = -zoom;
     camera.updateProjectionMatrix();
-    renderer.setSize(sizes.width, sizes.height);
+    // renderer.setSize(sizes.width, sizes.height);
+    renderer.setSize(width, height, false);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    scaleUI();
 }
 
 const mouse = new THREE.Vector2();
 function onPointerMove( event ) {
-	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    const rect = canvas.getBoundingClientRect();
+
+    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+	// pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	// pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
 function playAction(name) {
@@ -225,6 +261,8 @@ function showInstruction(step) {
 
 function updateInstruction(mesh, message) {
     const instruction = document.getElementById("instruction");
+    if (!instruction) return;
+
     let x, y;
 
     if (mesh) {
@@ -232,34 +270,37 @@ function updateInstruction(mesh, message) {
         mesh.getWorldPosition(vector);
         vector.project(camera);
 
-        x = (vector.x * 0.5 + 0.5) * window.innerWidth;
-        y = -(vector.y * 0.5 - 0.5) * window.innerHeight;
+        const canvasRect = renderer.domElement.getBoundingClientRect();
 
-        const offsetX = 0;   // move text to the right of the mesh
-        const offsetY = -100;  // move text above the mesh
+        x = (vector.x * 0.5 + 0.5) * canvasRect.width + canvasRect.left;
+        y = (-vector.y * 0.5 + 0.5) * canvasRect.height + canvasRect.top;
 
-        x += offsetX;
+        // ✅ scale-aware offset
+        const scaleFactor = canvasRect.width / BASE_WIDTH;
+        const offsetY = -80 * scaleFactor;
+
         y += offsetY;
 
-        x = Math.max(100, Math.min(window.innerWidth - 100, x));
-        y = Math.max(100, Math.min(window.innerHeight - 100, y));
+        // Optional clamp inside canvas
+        x = Math.max(canvasRect.left + 20, Math.min(canvasRect.right - 20, x));
+        y = Math.max(canvasRect.top + 20, Math.min(canvasRect.bottom - 20, y));
+
     } else {
-        x = window.innerWidth / 2;
-        y = 100;
+        const canvasRect = renderer.domElement.getBoundingClientRect();
+        x = canvasRect.left + canvasRect.width / 2;
+        y = canvasRect.top + 100;
     }
+
     instruction.style.left = `${x}px`;
     instruction.style.top = `${y}px`;
-    instruction.style.transform = "translateX(-50%)";
-    instruction.style.maxWidth = "220px";   // limit width
-    instruction.style.whiteSpace = "normal"; // allow wrapping
-    instruction.style.textAlign = "center";  // cleaner look
+    instruction.style.transform = "translate(-50%, -60%)";
     instruction.innerText = message;
     instruction.style.display = "block";
 
-        // ✅ Extract current step number (based on sliceStep)
     const stepNumber = Math.min(sliceStep + 1, 10);
     showInstruction(stepNumber);
 }
+
 
 function handleSlice() {
     const notebook = scene.getObjectByName("notebook");
@@ -559,4 +600,6 @@ function animate() {
     }
 
 renderer.setAnimationLoop( animate );
+scaleUI();
+
 
